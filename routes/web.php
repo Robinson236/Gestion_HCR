@@ -20,5 +20,9 @@ Route::get('/', function () {
 });
 
 Route::get('formulaire', [PersonnelController::class, 'create'])->name('formulaire');
-Route::get('liste', [PersonnelController::class, 'create'])->name('liste');
+Route::get('liste', [PersonnelController::class, 'index'])->name('liste');
+Route::post('insert', [PersonnelController::class, 'store'])->name('insert');
+Route::get('/', [PersonnelController::class, 'accueil']);
+
+
 

@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Personnel;
-use CreatePersonnelsTable;
 use Illuminate\Http\Request;
 
 class PersonnelController extends Controller
 {
-   
+
     public function index()
     {
         return view('liste', [
@@ -16,65 +15,45 @@ class PersonnelController extends Controller
         ]);
     }
 
-    
+
     public function create()
     {
         return view('formulaire');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        Personnel::create($request->all());
+        return redirect()->route('liste');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Personnel $personnel)
     {
-        //
+        return view('personnels.show',compact('personnel'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Personnel $personnel)
     {
-        //
+        return view('personnels.edit',compact('personnel'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, Personnel $personnel)
     {
-        //
+        $request->validate([
+
+        ]);
+
+        $personnel->update($request->all());
+
+        return redirect()->route('personnels.index')
+        ->with('success','Personnel updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Personnel $personnel)
     {
-        //
+        $personnel->delete();
+
+        return redirect()->route('etudiants.index')
+        ->with('success','Personnel deleted successfully.');
     }
 }
