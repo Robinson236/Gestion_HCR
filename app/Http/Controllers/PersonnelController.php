@@ -19,7 +19,7 @@ class PersonnelController extends Controller
     
     public function create()
     {
-        return view('formulaire ');
+        return view('formulaire');
     }
 
     /**
