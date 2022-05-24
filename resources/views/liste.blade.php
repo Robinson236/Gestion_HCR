@@ -1,59 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+@extends('layout.main')
+@section('contenu')
 
-</head>
-<link rel="stylesheet" href="{{ asset('style/bootstrap/css/bootstrap.min.css') }}">
-<link rel="stylesheet" href="{{ asset('style/bootstrap/css/bootstrap.css') }}">
+<div class="container">
+    <h2 class="text-center mt-3 text-primary shadow p-3 mb-5 bg-body rounded">Liste du personnel</h2>
+    <table class="table shadow p-3 mb-5 bg-body rounded" id="myTable">
+        <thead>
+            <tr>
+                <th scope="col">Numéro</th>
+                <th scope="col">Matricule</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Poste</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Photo</th>
+                <th colspan="3">Actions</th>
 
-<body>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($gestion_persos as $gestion_perso)
+            <tr>
+                <th scope="row">{{$gestion_perso->id}}</th>
+                <td>{{$gestion_perso->matricule}}</td>
+                <td>{{$gestion_perso->nom}}</td>
+                <td>{{$gestion_perso->prenom}}</td>
+                <td>{{$gestion_perso->genre}}</td>
+                <td>{{$gestion_perso->poste}}</td>
+                <td>{{$gestion_perso->titre}}</td>
+                <td><img src="{{asset('storage').'/'.$gestion_perso->photo}}" style="width:30px;height:30px" alt=""></td>
+                <td> <a class="button" href="/gestion_persos/{{ $gestion_perso->id }}"><img src="{{ asset('Images/more.png') }}" style="width:30px;height:30px" alt=""></a> </td>
+                <td> <a class="button" href="/gestion_persos/{{ $gestion_perso->id }}" onclick="return confirm('Voulez-vous modifier?');"><img src="{{ asset('Images/edit.png') }}" style="width:30px;height:30px" alt=""></a> </td>
+                <td><a class="button" href="{{url('supprimer_personnel/'.$gestion_perso->id) }}"><img src="{{ asset('Images/del.png') }}" style="width:30px;height:30px" alt=""></a></td>
+                @endforeach
+        </tbody>
+    </table>
+</div>
 
-    <h2 style="text-align: center;">Listes du personnel</h2>
-
-
-
-    <div class="container">
-      <a href="formulaire">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Formulaire</button>
-      </a>
-        <table class="table">
-          <table id="myTable" class="table table-striped table-bordered table-hover" style="background-color: white;">
-            <thead>
-              <tr>
-                <th scope="col">numero</th>
-                <th scope="col">matricule</th>
-                <th scope="col">nom</th>
-                <th scope="col">prenom</th>
-                <th scope="col">age</th>
-                <th scope="col">titre</th>
-                <th scope="col">telephone</th>
-                <th scope="col">adresse</th>
-                <th scope="col">email</th>
-                <th scope="col">photo</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach($personnels as $personnel)
-              <tr>
-                <th scope="row">{{$personnel->id}}</th>
-                <td>{{$personnel->matrucule}}</td>
-                <td>{{$personnel->nom}}</td>
-                <td>{{$personnel->prenom}}</td>
-                <td>{{$personnel->age}}</td>
-                <td>{{$personnel->titre}}</td>
-                <td>{{$personnel->telephone}}</td>
-                <td>{{$personnel->adresse}}</td>
-                <td>{{$personnel->email}}</td>
-                <td>{{$personnel->photo}}</td>
-              </tr>
-              @endforeach
-
-            </tbody>
-          </table>
-    </div>
-</body>
-</html>
+@endsection
