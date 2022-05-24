@@ -19,10 +19,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('formulaire', [PersonnelController::class, 'create'])->name('formulaire');
-Route::get('liste', [PersonnelController::class, 'index'])->name('liste');
-Route::post('insert', [PersonnelController::class, 'store'])->name('insert');
-Route::get('/', [PersonnelController::class, 'accueil']);
+Route::get('liste_personnel', [PersonnelController::class, 'index'])->name('liste');
+
+Route::get('formulaire_personnel', [PersonnelController::class, 'create'])->name('formulaire');
+
+Route::post('insertion', [PersonnelController::class, 'store'])->name('insertion');
+
+Route::get('/supprimer', [PersonnelController::class, 'destroy'])->name('supprimer');
+
+Route::delete('/personnel/{id}', 'PersonnelController@destroy')->name('personnels.destroy');
+
+Route::resource('gestion_personnel', Gestion_persoController::class);
+Route::get('supprimer_personnel/{id}', [Gestion_persoController::class, 'destroy']);
 
 
 
+// Route::resource('gestion_personnel', [PersonnelController::class]);

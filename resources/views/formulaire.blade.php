@@ -1,85 +1,53 @@
-<html>
-    <head>
-        <title>formulaire</title>
-        <link rel="stylesheet" href="{{ asset('style/bootstrap/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('style/bootstrap/css/bootstrap.css') }}">
+@extends('layouts.main')
+@section('contenu')
 
-    </head>
-    <body>
-        <h1 style="text-align:center">Formulaire du personnel</h1>
-
-        <div class="container">
-            <a href="liste">
-                <button class="btn btn-danger mb-3">liste du personnel</button>
-            </a>
-            <form method="POST" action="{{ route('liste') }}">
-                @csrf
-                <div class="row">
-                    <div class="form-group col-lg-6">
-                      <label for="nom">Matricul</label>
-                      <input type="texte" class="form-control" name="matricul" placeholder="matricul">
-                    </div>
-                    <div class="form-group col-lg-6">
-                      <label for="nom">Nom</label>
-                      <input type="texte" class="form-control" name="nom" placeholder="nom">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-lg-6">
-                      <label for="prenom">Prenom</label>
-                      <input type="texte" class="form-control" name="prenom" placeholder="prenom">
-                    </div>
-                    <div class="form-group col-lg-6">
-                      <label for="age">Age</label>
-                      <input type="number" class="form-control" name="age" placeholder="age">
-                    </div>
-                    <div class="form-group col-lg-6">
-                        <label for="poste">Poste</label>
-                        <input type="texte" class="form-control" name="poste" placeholder="poste">
-                      </div>
-
-                      <div class="form-group col-lg-6">
-                        <label for="titre">Titre</label>
-                        <input type="texte" class="form-control" name="titre" placeholder="titre">
-                      </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group col-lg-6">
-                        <label for="telephone">Telephone</label>
-                        <input type="number" class="form-control" id="telephone" placeholder="telephone">
-                    </div>
-
-                    <div class="form-group col-lg-6">
-                        <label for="inputEmail4">Adresse</label>
-                        <input type="adresse" class="form-control" id="inputEmail4" placeholder="adresse">
-                    </div>
-
-                    <div class="form-group col-lg-6">
-                        <label for="inputEmail4">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                    </div>
-
-                    <div class="form-group col-lg-6">
-                        <label for="inputEmail4">Photo</label>
-                        <input type="img" class="form-control" id="inputEmail4" placeholder="photo">
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-1">
-                        <input type="submit" class="btn btn-primary" value="valider">
-                    </div>
-                    <div class="col-lg-1">
-                        <button type="submit" class="btn btn-primary">annuler</button>
-                    </div>
-
-
-                </div>
-
-              </form>
+<div class="container">
+    <form method="POST" action="{{ route('insertion') }}" enctype="multipart/form-data">
+        @csrf
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Nom</label>
+          <input type="text" class="form-control" name="nom" id="exampleInputEmail1" aria-describedby="emailHelp">
         </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Prénom</label>
+            <input type="text" class="form-control" name="prenom" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label class="col-sm-3 control-label">GENRE</label>
+            <div class="col-sm-12">
+            <select class="form-select" type="text" aria-label="Default select example" name="genre" >
+            <option selected > Genre </option>
+            <option value="Masculin">Masculin</option>
+            <option value="Feminin">Feminin</option>
+            </select>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Poste</label>
+            <input type="text" class="form-control" name="poste" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Titre</label>
+            <input type="text" class="form-control" name="titre" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Matricule</label>
+            <input type="text" class="form-control" name="matricule" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Photo</label>
+            <input type="file" class="form-control" name="photo" id="photo" aria-describedby="emailHelp">
+          </div>
+          <div class="container d-flex">
+              <div class="col1">
+              <button type="submit" class="btn btn-primary">Valider</button>
+              </div> &nbsp;&nbsp;&nbsp;
+              <div>
+              <button type="reset" class="btn btn-danger">Supprimer</button>
+              </div>
+          </div>
 
+      </form>
+</div>
 
-    </body>
-</html>
+@endsection
