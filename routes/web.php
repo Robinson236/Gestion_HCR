@@ -30,8 +30,6 @@ Route::get('/supprimer', [PersonnelController::class, 'destroy'])->name('supprim
 Route::delete('/personnel/{id}', 'PersonnelController@destroy')->name('personnels.destroy');
 
 Route::resource('gestion_personnel', PersonnelController::class);
+
 Route::get('supprimer_personnel/{id}', [PersonnelController::class, 'destroy']);
 
-
-
-// Route::resource('gestion_personnel', [PersonnelController::class]);

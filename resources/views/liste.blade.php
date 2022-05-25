@@ -31,7 +31,7 @@
             <td>{{$personnel->poste}}</td>
             <td>{{$personnel->titre}}</td>
             <td>{{$personnel->matricule}}</td>
-            <td><img src="{{ asset('storage').'/'.$personnel->photo }}" style="width: 20%" alt=""></td>
+            <td><img src="{{ asset('storage').'/'.$personnel->photo }}" style="width: 15%" alt=""></td>
             <td> <a class="button" href="/personnels/{{ $personnel->id }}"><img src="{{ asset('img/more.png') }}" style="width:30px;height:30px" alt=""></a> </td>
             <td> <a class="button" href="/personnels/{{ $personnel->id }}" onclick="return confirm('Voulez-vous modifier?');"><img src="{{ asset('img/edit.png') }}" style="width:30px;height:30px" alt=""></a> </td>
             <td><a class="button" href="{{url('supprimer_personnel/'.$personnel->id) }}"><img src="{{ asset('img/del.png') }}" style="width:30px;height:30px" alt=""></a></td>

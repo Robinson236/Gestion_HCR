@@ -7,5 +7,5 @@
      @include('includes.form')
      <button type="submit" class="btn btn-primary">Sauvegarder les informations</button>
 </form>
-<img src="{{ asset('image/imag.jpg') }}" class="d-block w-100" height="500px" alt="">
+<img src="{{ asset('img/imag.jpg') }}" class="d-block w-100" height="500px" alt="">
 @endsection
