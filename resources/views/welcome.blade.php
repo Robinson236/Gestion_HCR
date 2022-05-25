@@ -1,4 +1,5 @@
-@extends('layout.main')
+@extends('layouts.main')
 @section('contenu')
-<img src="{{ asset('image/imag.jpg') }}" class="d-block w-100" height="500px" alt="">
+<img src="{{ asset('image/imag.jpg') }}" width='100%' height="653px" alt="">
+
 @endsection

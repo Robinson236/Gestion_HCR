@@ -2,58 +2,100 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Personnel;
 use Illuminate\Http\Request;
+use App\Models\Personnel;
+
 
 class PersonnelController extends Controller
 {
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return view('liste', [
-            'personels' => Personnel::all()
+            'personnels' => Personnel::all()
         ]);
     }
 
-
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return view('formulaire');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        Personnel::create($request->all());
+        Personnel::create([
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'genre' => $request->genre,
+            'titre' => $request->titre,
+            'poste' => $request->poste,
+            'matricule' => $request->matricule,
+            'photo' => $request->photo->store('img_personnel','public')
+
+        ]);
         return redirect()->route('liste');
     }
 
-    public function show(Personnel $personnel)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        return view('personnels.show',compact('personnel'));
+        //
     }
 
-    public function edit(Personnel $personnel)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
-        return view('personnels.edit',compact('personnel'));
+        //
     }
 
-    public function update(Request $request, Personnel $personnel)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
-        $request->validate([
-
-        ]);
-
-        $personnel->update($request->all());
-
-        return redirect()->route('personnels.index')
-        ->with('success','Personnel updated successfully.');
+        //
     }
 
-    public function destroy(Personnel $personnel)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
-        $personnel->delete();
+        $personnel = Personnel::where('id', $id)->firstorfail()->delete();
+          echo ("Personnel Record deleted successfully.");
+          return redirect()->route('gestion_personnel.index');
 
-        return redirect()->route('etudiants.index')
-        ->with('success','Personnel deleted successfully.');
     }
 }

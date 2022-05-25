@@ -4,13 +4,12 @@
         
         <title>Gestion_HCR</title>
 
-    <link rel="stylesheet" href="{{ asset('style/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('style/bootstrap/css/bootstrap.css') }}">
-    </head>
+        <link rel="stylesheet" href="{{ asset('style/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('style/bootstrap/css/bootstrap.css') }}">
     
-    <body class="antialiased">
+    <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid"  style="background-color: green ;">
+            <div class="container-fluid"  style="background-color: red ;">
               <a class="navbar-brand" href="#">
                 <img src="image/clin.jpg" style="height: 10vh;" alt="">
               </a>
